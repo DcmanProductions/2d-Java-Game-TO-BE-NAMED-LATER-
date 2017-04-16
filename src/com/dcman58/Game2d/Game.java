@@ -13,20 +13,22 @@ import javax.swing.JFrame;
 
 import com.dcman58.Game2d.Graphics.Screen;
 import com.dcman58.Game2d.input.Keyboard;
+import com.dcman58.Game2d.level.Level;
+import com.dcman58.Game2d.level.RandomLevel;
 
 public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 5643689574634547787L;
-	public static int width = 450;
+	public static int width = 650;
 	public static int height = width / 16 * 9;
 	public static int scale = 3;
 	public static String title = "2d Game [TO BE NAMED LATER]";
 	public static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
 
-	
 	private Keyboard key;
 	private Thread thread;
 	private JFrame frame;
 	private boolean running = false;
+	private Level level;
 
 	private Screen screen;
 
@@ -38,8 +40,9 @@ public class Game extends Canvas implements Runnable {
 		setPreferredSize(size);
 		screen = new Screen(width, height);
 		frame = new JFrame();
-		
 		key = new Keyboard();
+		level = new RandomLevel(64, 64);
+
 		addKeyListener(key);
 
 	}
@@ -67,9 +70,9 @@ public class Game extends Canvas implements Runnable {
 		double delta = 0;
 		int frames = 0;
 		int updates = 0;
-		
+
 		requestFocus();
-		
+
 		while (running) {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
@@ -96,14 +99,19 @@ public class Game extends Canvas implements Runnable {
 
 	public void update() {
 		key.update();
-		if(key.up)y++;
-		if(key.down)y--;
-		if(key.left)x++;
-		if(key.right)x--;
-		if(key.escape)System.exit(0);
+		if (key.up)
+			y--;
+		if (key.down)
+			y++;
+		if (key.left)
+			x--;
+		if (key.right)
+			x++;
+		if (key.escape)
+			System.exit(0);
 		device.setFullScreenWindow(frame);
-		if(key.fullscreen){
-			
+		if (key.fullscreen) {
+
 		}
 	}
 
@@ -114,7 +122,7 @@ public class Game extends Canvas implements Runnable {
 			return;
 		}
 		screen.clear();
-		screen.render(x, y);
+		level.render(x, y, screen);
 
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];
