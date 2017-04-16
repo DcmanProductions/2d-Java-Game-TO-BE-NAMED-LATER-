@@ -12,6 +12,7 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 import com.dcman58.Game2d.Graphics.Screen;
+import com.dcman58.Game2d.entity.mob.Player;
 import com.dcman58.Game2d.input.Keyboard;
 import com.dcman58.Game2d.level.Level;
 import com.dcman58.Game2d.level.RandomLevel;
@@ -29,6 +30,7 @@ public class Game extends Canvas implements Runnable {
 	private JFrame frame;
 	private boolean running = false;
 	private Level level;
+	private Player player;
 
 	private Screen screen;
 
@@ -42,6 +44,8 @@ public class Game extends Canvas implements Runnable {
 		frame = new JFrame();
 		key = new Keyboard();
 		level = new RandomLevel(64, 64);
+
+		player = new Player(key);
 
 		addKeyListener(key);
 
@@ -95,18 +99,10 @@ public class Game extends Canvas implements Runnable {
 		stop();
 	}
 
-	int x = 0, y = 0;
 
 	public void update() {
 		key.update();
-		if (key.up)
-			y--;
-		if (key.down)
-			y++;
-		if (key.left)
-			x--;
-		if (key.right)
-			x++;
+		player.update();
 		if (key.escape)
 			System.exit(0);
 		device.setFullScreenWindow(frame);
@@ -122,7 +118,7 @@ public class Game extends Canvas implements Runnable {
 			return;
 		}
 		screen.clear();
-		level.render(x, y, screen);
+		level.render(player.x, player.y, screen);
 
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];
