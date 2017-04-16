@@ -3,6 +3,8 @@ package com.dcman58.Game2d;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
@@ -14,11 +16,13 @@ import com.dcman58.Game2d.input.Keyboard;
 
 public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 5643689574634547787L;
-	public static int width = 300;
+	public static int width = 450;
 	public static int height = width / 16 * 9;
 	public static int scale = 3;
 	public static String title = "2d Game [TO BE NAMED LATER]";
+	public static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
 
+	
 	private Keyboard key;
 	private Thread thread;
 	private JFrame frame;
@@ -34,7 +38,7 @@ public class Game extends Canvas implements Runnable {
 		setPreferredSize(size);
 		screen = new Screen(width, height);
 		frame = new JFrame();
-
+		
 		key = new Keyboard();
 		addKeyListener(key);
 
@@ -96,6 +100,11 @@ public class Game extends Canvas implements Runnable {
 		if(key.down)y--;
 		if(key.left)x++;
 		if(key.right)x--;
+		if(key.escape)System.exit(0);
+		device.setFullScreenWindow(frame);
+		if(key.fullscreen){
+			
+		}
 	}
 
 	public void render() {

@@ -7,17 +7,19 @@ public class Keyboard implements KeyListener {
 
 	private boolean[] keys = new boolean[300];
 
-	public boolean up, down, left, right;
+	public boolean up, down, left, right, escape, fullscreen;
 
-	public void update(){
-		up=keys[KeyEvent.VK_W];
-		left=keys[KeyEvent.VK_A];
-		down=keys[KeyEvent.VK_S];
-		right=keys[KeyEvent.VK_D];
-		
-		for(int i = 0;i<keys.length;i++){
-			if(keys[i]){
-//				System.out.println("Key: "+i);
+	public void update() {
+		up = keys[KeyEvent.VK_W];
+		left = keys[KeyEvent.VK_A];
+		down = keys[KeyEvent.VK_S];
+		right = keys[KeyEvent.VK_D];
+		escape = keys[KeyEvent.VK_ESCAPE];
+		fullscreen = keys[KeyEvent.VK_F11];
+
+		for (int i = 0; i < keys.length; i++) {
+			if (keys[i]) {
+				// System.out.println("Key: "+i);
 			}
 		}
 	}
