@@ -2,6 +2,7 @@ package com.dcman58.Game2d.Graphics;
 
 import java.util.Random;
 
+import com.dcman58.Game2d.entity.mob.Player;
 import com.dcman58.Game2d.level.tile.Tile;
 
 public class Screen {
@@ -45,6 +46,28 @@ public class Screen {
 				if (xa < 0)
 					xa = 0;
 				pixels[xa + ya * width] = tile.sprite.pixels[x + y * tile.sprite.SIZE];
+			}
+		}
+	}
+	
+	public void renderPlayer(int xp, int yp, Sprite sprite, int flip){
+		xp -= xOffset;
+		yp -= yOffset;
+		for (int y = 0; y < 32; y++) {
+			int ys =y;
+			if(flip == 2 || flip == 3){ys = 31-y;}
+			int ya = y + yp;
+			for (int x = 0; x < 32; x++) {
+				int xs = x;
+				if(flip ==1 || flip == 3){xs = 31-x;}
+				int xa = x + xp;
+				if (xa < -32 || xa >= width || ya < 0 || ya >= height)
+					break;
+				if (xa < 0)
+					xa = 0;
+				int col = sprite.pixels[xs+ys*sprite.SIZE];
+				if(col != 0xffff00ff)
+					pixels[xa + ya * width] = col;
 			}
 		}
 	}

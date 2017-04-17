@@ -107,7 +107,7 @@ public class Game extends Canvas implements Runnable {
 			System.exit(0);
 		device.setFullScreenWindow(frame);
 		if (key.fullscreen) {
-
+			
 		}
 	}
 
@@ -118,7 +118,9 @@ public class Game extends Canvas implements Runnable {
 			return;
 		}
 		screen.clear();
-		level.render(player.x, player.y, screen);
+		int xScroll=player.x-screen.width/2, yScroll = player.y - screen.height/2;
+		level.render(xScroll, yScroll, screen);
+		player.render(screen);
 
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];
