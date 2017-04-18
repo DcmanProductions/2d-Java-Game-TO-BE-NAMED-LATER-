@@ -2,7 +2,6 @@ package com.dcman58.Game2d.Graphics;
 
 import java.util.Random;
 
-import com.dcman58.Game2d.entity.mob.Player;
 import com.dcman58.Game2d.level.tile.Tile;
 
 public class Screen {

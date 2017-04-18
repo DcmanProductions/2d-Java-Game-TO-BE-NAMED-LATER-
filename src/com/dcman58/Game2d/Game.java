@@ -1,7 +1,9 @@
 package com.dcman58.Game2d;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
@@ -14,12 +16,13 @@ import javax.swing.JFrame;
 import com.dcman58.Game2d.Graphics.Screen;
 import com.dcman58.Game2d.entity.mob.Player;
 import com.dcman58.Game2d.input.Keyboard;
+import com.dcman58.Game2d.input.Mouse;
 import com.dcman58.Game2d.level.Level;
-import com.dcman58.Game2d.level.RandomLevel;
+import com.dcman58.Game2d.level.TileCoordinate;
 
 public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 5643689574634547787L;
-	public static int width = 650;
+	public static int width = 500;
 	public static int height = width / 16 * 9;
 	public static int scale = 3;
 	public static String title = "2d Game [TO BE NAMED LATER]";
@@ -43,11 +46,16 @@ public class Game extends Canvas implements Runnable {
 		screen = new Screen(width, height);
 		frame = new JFrame();
 		key = new Keyboard();
-		level = new RandomLevel(64, 64);
-
-		player = new Player(key);
+		level = level.spawn;
+		TileCoordinate playerSpawn = new TileCoordinate(48, 48);
+		player = new Player(playerSpawn.x(), playerSpawn.y(), key);
+		player.init(level);
 
 		addKeyListener(key);
+		
+		Mouse mouse = new Mouse();
+		addMouseListener(mouse);
+		addMouseMotionListener(mouse);
 
 	}
 
@@ -99,7 +107,6 @@ public class Game extends Canvas implements Runnable {
 		stop();
 	}
 
-
 	public void update() {
 		key.update();
 		player.update();
@@ -107,7 +114,7 @@ public class Game extends Canvas implements Runnable {
 			System.exit(0);
 		device.setFullScreenWindow(frame);
 		if (key.fullscreen) {
-			
+			//width = 1280;
 		}
 	}
 
@@ -118,7 +125,7 @@ public class Game extends Canvas implements Runnable {
 			return;
 		}
 		screen.clear();
-		int xScroll=player.x-screen.width/2, yScroll = player.y - screen.height/2;
+		int xScroll = player.x - screen.width / 2, yScroll = player.y - screen.height / 2;
 		level.render(xScroll, yScroll, screen);
 		player.render(screen);
 
@@ -128,7 +135,9 @@ public class Game extends Canvas implements Runnable {
 
 		Graphics g = bs.getDrawGraphics();
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-
+		g.setColor(Color.white);
+		g.setFont(new Font("Arial",0,50));
+		g.drawString("Button Pressed: " +Mouse.getButton(), 80, 80);
 		g.dispose();
 		bs.show();
 	}

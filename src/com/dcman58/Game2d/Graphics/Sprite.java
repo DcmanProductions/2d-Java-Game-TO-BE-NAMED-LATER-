@@ -7,13 +7,35 @@ public class Sprite {
 	public int[] pixels;
 	private SpriteSheet sheet;
 	public static Sprite grass = new Sprite(16, 0, 0, SpriteSheet.tiles);
+	public static Sprite flower = new Sprite(16, 2, 0, SpriteSheet.tiles);
+	public static Sprite rock = new Sprite(16, 3, 0, SpriteSheet.tiles);
+	public static Sprite rose = new Sprite(16, 4, 0, SpriteSheet.tiles);
+	public static Sprite blue_flower = new Sprite(16, 5, 0, SpriteSheet.tiles);
+	public static Sprite tree = new Sprite(32, 3, 0, SpriteSheet.tiles);
+	public static Sprite red_brick = new Sprite(16,8,0, SpriteSheet.tiles);
+	public static Sprite grey_brick = new Sprite(16,9,0, SpriteSheet.tiles);
+	public static Sprite mossy_gray_brick = new Sprite(16,10,0, SpriteSheet.tiles);
+	public static Sprite mossy_red_brick = new Sprite(16,11,0, SpriteSheet.tiles);
+	public static Sprite water = new Sprite(16,12,0, SpriteSheet.tiles);
+	public static Sprite hedge = new Sprite(16,13,0, SpriteSheet.tiles);
+	public static Sprite green_brick = new Sprite(16,14,0, SpriteSheet.tiles);
+	
+	
+	
 	public static Sprite voidSprite = new Sprite(16, 0x52D4FF);
+
+	public static Sprite player_front = new Sprite(32, 1, 1, SpriteSheet.player);
+	public static Sprite player_back = new Sprite(32, 5, 1, SpriteSheet.player);
+	public static Sprite player_side = new Sprite(32, 9, 1, SpriteSheet.player);
+
+	public static Sprite player_forward_1 = new Sprite(32, 0, 1, SpriteSheet.player);
+	public static Sprite player_forward_2 = new Sprite(32, 2, 1, SpriteSheet.player);
 	
-	public static Sprite player_front = new Sprite(32, 1,1, SpriteSheet.player);
-	public static Sprite player_back = new Sprite(32, 5,1, SpriteSheet.player);
-	public static Sprite player_side = new Sprite(32, 9,1, SpriteSheet.player);
+	public static Sprite player_side_1 = new Sprite(32, 8, 1, SpriteSheet.player);
+	public static Sprite player_side_2 = new Sprite(32, 10, 1, SpriteSheet.player);
 	
-	//public static Sprite
+	public static Sprite player_back_1 = new Sprite(32, 4, 1, SpriteSheet.player);
+	public static Sprite player_back_2 = new Sprite(32, 6, 1, SpriteSheet.player);
 
 	public Sprite(int size, int x, int y, SpriteSheet sheet) {
 		SIZE = size;
@@ -23,15 +45,15 @@ public class Sprite {
 		this.sheet = sheet;
 		load();
 	}
-	
-	public Sprite(int size, int color){
+
+	public Sprite(int size, int color) {
 		SIZE = size;
-		pixels = new int[SIZE*SIZE];
+		pixels = new int[SIZE * SIZE];
 		setColor(color);
 	}
-	
-	private void setColor(int color){
-		for(int i=0;i<SIZE*SIZE;i++){
+
+	private void setColor(int color) {
+		for (int i = 0; i < SIZE * SIZE; i++) {
 			pixels[i] = color;
 		}
 	}
