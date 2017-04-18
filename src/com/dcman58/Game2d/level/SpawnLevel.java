@@ -26,6 +26,5 @@ public class SpawnLevel extends Level {
 	}
 
 	protected void generateLevel() {
-		System.out.println("Tiles " + tiles[0]);
 	}
 }

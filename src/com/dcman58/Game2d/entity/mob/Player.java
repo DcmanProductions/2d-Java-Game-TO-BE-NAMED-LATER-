@@ -1,8 +1,10 @@
 package com.dcman58.Game2d.entity.mob;
 
+import com.dcman58.Game2d.Game;
 import com.dcman58.Game2d.Graphics.Screen;
 import com.dcman58.Game2d.Graphics.Sprite;
 import com.dcman58.Game2d.input.Keyboard;
+import com.dcman58.Game2d.input.Mouse;
 
 public class Player extends Mob {
 
@@ -44,6 +46,18 @@ public class Player extends Mob {
 			walking = true;
 		} else {
 			walking = false;
+		}
+		updateShooting();
+
+	}
+
+	private void updateShooting() {
+
+		if (Mouse.getButton() == 1) {
+			double dx = Mouse.getX() - Game.getWindowWidth() / 2;
+			double dy = Mouse.getY() - Game.getWindowHeight() / 2;
+			double dir = Math.atan2(dy, dx);
+			shoot(x, y, dir);
 		}
 	}
 

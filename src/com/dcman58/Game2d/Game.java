@@ -22,9 +22,9 @@ import com.dcman58.Game2d.level.TileCoordinate;
 
 public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 5643689574634547787L;
-	public static int width = 500;
-	public static int height = width / 16 * 9;
-	public static int scale = 3;
+	private static int width = 500;
+	private static int height = width / 16 * 9;
+	private static int scale = 3;
 	public static String title = "2d Game [TO BE NAMED LATER]";
 	public static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
 
@@ -52,7 +52,7 @@ public class Game extends Canvas implements Runnable {
 		player.init(level);
 
 		addKeyListener(key);
-		
+
 		Mouse mouse = new Mouse();
 		addMouseListener(mouse);
 		addMouseMotionListener(mouse);
@@ -110,11 +110,12 @@ public class Game extends Canvas implements Runnable {
 	public void update() {
 		key.update();
 		player.update();
+		level.update();
 		if (key.escape)
 			System.exit(0);
-		device.setFullScreenWindow(frame);
 		if (key.fullscreen) {
-			//width = 1280;
+			device.setFullScreenWindow(frame);
+			width = 1280;
 		}
 	}
 
@@ -136,10 +137,18 @@ public class Game extends Canvas implements Runnable {
 		Graphics g = bs.getDrawGraphics();
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 		g.setColor(Color.white);
-		g.setFont(new Font("Arial",0,50));
-		g.drawString("Button Pressed: " +Mouse.getButton(), 80, 80);
+		g.setFont(new Font("Arial", 0, 18));
+		g.drawString("Angle ", 80, 80);
 		g.dispose();
 		bs.show();
+	}
+
+	public static int getWindowWidth() {
+		return width * scale;
+	}
+
+	public static int getWindowHeight() {
+		return height * scale;
 	}
 
 	public static void main(String[] args) {
