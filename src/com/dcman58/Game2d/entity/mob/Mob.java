@@ -1,7 +1,7 @@
 package com.dcman58.Game2d.entity.mob;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.dcman58.Game2d.Graphics.Sprite;
 import com.dcman58.Game2d.entity.Entity;
@@ -42,9 +42,7 @@ public abstract class Mob extends Entity {
 	}
 
 	protected void shoot(int x, int y, double dir) {
-//		dir *= 180 / Math.PI;
-		Projectile p = new WizardProjectile(x,y,dir);
-		projectiles.add(p);
+		Projectile p = new WizardProjectile(x, y, dir);
 		level.add(p);
 	}
 

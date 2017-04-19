@@ -3,6 +3,7 @@ package com.dcman58.Game2d.entity;
 import java.util.Random;
 
 import com.dcman58.Game2d.Graphics.Screen;
+import com.dcman58.Game2d.Graphics.Sprite;
 import com.dcman58.Game2d.level.Level;
 
 public abstract class Entity {
@@ -10,7 +11,7 @@ public abstract class Entity {
 	private boolean removed = false;
 	protected Level level;
 	protected Random random = new Random();
-	
+	protected Sprite sprite;
 	public void update(){
 		
 	}

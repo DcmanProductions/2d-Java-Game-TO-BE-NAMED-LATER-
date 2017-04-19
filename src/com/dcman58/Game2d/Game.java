@@ -115,7 +115,6 @@ public class Game extends Canvas implements Runnable {
 			System.exit(0);
 		if (key.fullscreen) {
 			device.setFullScreenWindow(frame);
-			width = 1280;
 		}
 	}
 
@@ -138,7 +137,7 @@ public class Game extends Canvas implements Runnable {
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 		g.setColor(Color.white);
 		g.setFont(new Font("Arial", 0, 18));
-		g.drawString("Angle ", 80, 80);
+		//g.drawString("Angle ", 80, 80);
 		g.dispose();
 		bs.show();
 	}

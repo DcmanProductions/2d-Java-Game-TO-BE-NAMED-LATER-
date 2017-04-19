@@ -1,10 +1,12 @@
 package com.dcman58.Game2d.level;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.dcman58.Game2d.Graphics.Screen;
 import com.dcman58.Game2d.entity.Entity;
+import com.dcman58.Game2d.entity.particle.Particle;
+import com.dcman58.Game2d.entity.projectile.Projectile;
 import com.dcman58.Game2d.level.tile.Tile;
 
 public class Level {
@@ -13,6 +15,8 @@ public class Level {
 	protected int[] tilesInt;
 
 	private List<Entity> entities = new ArrayList<Entity>();
+	private List<Projectile> projectiles = new ArrayList<Projectile>();
+	private List<Particle> particles = new ArrayList<Particle>();
 
 	protected int[] tiles;
 	public static Level spawn = new SpawnLevel("/textures/Levels/SpawnLevel.png");
@@ -27,6 +31,11 @@ public class Level {
 	public Level(String path) {
 		loadLevel(path);
 		generateLevel();
+
+	}
+
+	public List<Projectile> getProjectiles() {
+		return projectiles;
 	}
 
 	protected void loadLevel(String path) {
@@ -41,10 +50,44 @@ public class Level {
 		for (int i = 0; i < entities.size(); i++) {
 			entities.get(i).update();
 		}
+		for (int i = 0; i < projectiles.size(); i++) {
+			projectiles.get(i).update();
+		}
+		for (int i = 0; i < particles.size(); i++) {
+			particles.get(i).update();
+		}
+		remove();
+	}
+
+	private void remove() {
+		for (int i = 0; i < entities.size(); i++) {
+			if (entities.get(i).isRemoved())
+				entities.remove(i);
+		}
+		for (int i = 0; i < particles.size(); i++) {
+			if (particles.get(i).isRemoved())
+				particles.remove(i);
+		}
+		for (int i = 0; i < projectiles.size(); i++) {
+			if (projectiles.get(i).isRemoved())
+				projectiles.remove(i);
+		}
 	}
 
 	private void time() {
 
+	}
+
+	public boolean tileCollision(double x, double y, double xa, double ya, int size) {
+		boolean solid = false;
+		for (int c = 0; c < 4; c++) {
+			double xt = ((x + xa) + c % 2 * size / 8 + 5) / 16;
+			double yt = ((y + ya) + c / 2 * size / 8) / 16;
+			if (getTile((int) xt, (int) yt).solid())
+				solid = true;
+		}
+
+		return solid;
 	}
 
 	public void render(int xScroll, int yScroll, Screen screen) {
@@ -57,21 +100,30 @@ public class Level {
 		for (int y = y0; y < y1; y++) {
 			for (int x = x0; x < x1; x++) {
 				getTile(x, y).render(x, y, screen);
-				/*
-				 * if (x + y * 16 < 0 || x + y * 16 >= 256) {
-				 * Tile.voidTile.render(x, y, screen); continue; } tiles[x + y *
-				 * 16].render(x, y, screen);
-				 */
+
 			}
 		}
 		for (int i = 0; i < entities.size(); i++) {
 			entities.get(i).render(screen);
 		}
+		for (int i = 0; i < projectiles.size(); i++) {
+			projectiles.get(i).render(screen);
+		}
+		for (int i = 0; i < particles.size(); i++) {
+			particles.get(i).render(screen);
+		}
 
 	}
 
 	public void add(Entity e) {
-		entities.add(e);
+		e.init(this);
+		if (e instanceof Particle) {
+			particles.add((Particle) e);
+		} else if (e instanceof Projectile) {
+			projectiles.add((Projectile) e);
+		} else {
+			entities.add(e);
+		}
 	}
 
 	/*

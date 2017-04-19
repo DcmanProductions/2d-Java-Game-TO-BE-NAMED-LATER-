@@ -1,5 +1,7 @@
 package com.dcman58.Game2d.entity.projectile;
 
+import java.util.Random;
+
 import com.dcman58.Game2d.Graphics.Sprite;
 import com.dcman58.Game2d.entity.Entity;
 
@@ -9,7 +11,10 @@ public abstract class Projectile extends Entity {
 	protected double angle;
 	protected Sprite sprite;
 	protected double nx, ny;
-	protected double speed, rateOfFire, range, damage;
+	protected double speed, range, damage;
+	protected double x, y;
+	protected double distace;
+	protected final Random random = new Random();
 
 	public Projectile(int x, int y, double dir) {
 
@@ -18,7 +23,15 @@ public abstract class Projectile extends Entity {
 		angle = dir;
 		this.x = x;
 		this.y = y;
+	}
 
+	public Sprite getSprite() {
+		return sprite;
+
+	}
+
+	public int getSpriteSize() {
+		return sprite.SIZE;
 	}
 
 	protected void move() {

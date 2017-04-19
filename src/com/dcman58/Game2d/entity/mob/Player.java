@@ -3,6 +3,8 @@ package com.dcman58.Game2d.entity.mob;
 import com.dcman58.Game2d.Game;
 import com.dcman58.Game2d.Graphics.Screen;
 import com.dcman58.Game2d.Graphics.Sprite;
+import com.dcman58.Game2d.entity.projectile.Projectile;
+import com.dcman58.Game2d.entity.projectile.WizardProjectile;
 import com.dcman58.Game2d.input.Keyboard;
 import com.dcman58.Game2d.input.Mouse;
 
@@ -10,6 +12,9 @@ public class Player extends Mob {
 
 	private Keyboard input;
 	private Sprite sprite;
+	
+	private int fireRate;
+	Projectile p;
 
 	private int anim = 0;
 	private boolean walking = false;
@@ -24,9 +29,11 @@ public class Player extends Mob {
 		this.y = y;
 		this.input = input;
 		sprite = Sprite.player_front;
+		fireRate = WizardProjectile.FIRE_RATE;
 	}
 
 	public void update() {
+		if(fireRate>0)fireRate--;
 		int xa = 0, ya = 0;
 		if (anim < 7500)
 			anim++;
@@ -47,17 +54,28 @@ public class Player extends Mob {
 		} else {
 			walking = false;
 		}
+		clear();
 		updateShooting();
 
 	}
 
+	private void clear() {
+		for (int i = 0; i < level.getProjectiles().size(); i++) {
+			Projectile p = level.getProjectiles().get(i);
+			if(p.isRemoved()){
+				level.getProjectiles().remove(i);
+			}
+		}
+	}
+
 	private void updateShooting() {
 
-		if (Mouse.getButton() == 1) {
+		if (Mouse.getButton() == 1&&fireRate <=0) {
 			double dx = Mouse.getX() - Game.getWindowWidth() / 2;
 			double dy = Mouse.getY() - Game.getWindowHeight() / 2;
 			double dir = Math.atan2(dy, dx);
 			shoot(x, y, dir);
+			fireRate = WizardProjectile.FIRE_RATE;
 		}
 	}
 
