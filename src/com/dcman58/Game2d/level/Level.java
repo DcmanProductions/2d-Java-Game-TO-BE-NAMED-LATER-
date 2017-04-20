@@ -172,14 +172,14 @@ public class Level {
 		if (tiles[x + y * width] == Tile.col_mossy_red_brick)
 			return Tile.mossy_red_brick;
 
-		if (tiles[x + y * width] == 0xFF008000)
+		if (tiles[x + y * width] == Tile.col_hedge)
 			return Tile.hedge;
 
-		if (tiles[x + y * width] == 0xFF0097FF)
+		if (tiles[x + y * width] == Tile.col_water)
 			return Tile.water;
 
-		if (tiles[x + y * width] == 0xFF003A00)
-			return Tile.green_brick;
+		if (tiles[x + y * width] == Tile.col_blue_brick)
+			return Tile.blue_brick;
 
 		return Tile.grass;
 

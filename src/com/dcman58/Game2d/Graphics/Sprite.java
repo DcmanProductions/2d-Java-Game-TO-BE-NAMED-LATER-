@@ -27,7 +27,7 @@ public class Sprite {
 	public static Sprite mossy_red_brick = new Sprite(16, 11, 0, SpriteSheet.tiles);
 	public static Sprite water = new Sprite(16, 12, 0, SpriteSheet.tiles);
 	public static Sprite hedge = new Sprite(16, 13, 0, SpriteSheet.tiles);
-	public static Sprite green_brick = new Sprite(16, 14, 0, SpriteSheet.tiles);
+	public static Sprite blue_brick = new Sprite(16, 14, 0, SpriteSheet.tiles);
 
 	public static Sprite voidSprite = new Sprite(16, 0x52D4FF);
 	// Player Sprites

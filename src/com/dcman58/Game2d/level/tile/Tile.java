@@ -22,7 +22,7 @@ public class Tile {
 	public static Tile mossy_gray_brick = new Mosy_Gray_Brick(Sprite.mossy_gray_brick);
 	public static Tile hedge = new Hedge(Sprite.hedge);
 	public static Tile water = new Water(Sprite.water);
-	public static Tile green_brick = new Green_Brick(Sprite.green_brick);
+	public static Tile blue_brick = new Blue_Brick(Sprite.blue_brick);
 	
 	public static Tile tree = new TreeTile(Sprite.tree);
 	
@@ -55,7 +55,7 @@ public class Tile {
 	public static final int col_mossy_gray_brick = 0xFF6BA76B;
 	public static final int col_water = 0xFF0097FF;
 	public static final int col_hedge = 0xFF008000;
-	public static final int col_green_brick = 0xFF003A00;
+	public static final int col_blue_brick = 0xFF0010b3;
 
 	public Tile(Sprite sprite) {
 		this.sprite = sprite;

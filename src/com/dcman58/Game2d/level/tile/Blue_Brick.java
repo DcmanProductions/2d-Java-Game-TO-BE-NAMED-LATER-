@@ -3,9 +3,9 @@ package com.dcman58.Game2d.level.tile;
 import com.dcman58.Game2d.Graphics.Screen;
 import com.dcman58.Game2d.Graphics.Sprite;
 
-public class Green_Brick extends Tile {
+public class Blue_Brick extends Tile {
 
-	public Green_Brick(Sprite sprite) {
+	public Blue_Brick(Sprite sprite) {
 		super(sprite);
 	}
 	
