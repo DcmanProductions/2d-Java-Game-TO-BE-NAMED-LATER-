@@ -34,6 +34,8 @@ public class Game extends Canvas implements Runnable {
 	private boolean running = false;
 	private Level level;
 	private Player player;
+	
+	public int FPS=0;
 
 	private Screen screen;
 
@@ -100,6 +102,7 @@ public class Game extends Canvas implements Runnable {
 			if (System.currentTimeMillis() - timer > 100) {
 				timer += 1000;
 				frame.setTitle(title + "  " + frames + " FPS");
+				FPS = frames;
 				updates = 0;
 				frames = 0;
 			}
@@ -136,8 +139,8 @@ public class Game extends Canvas implements Runnable {
 		Graphics g = bs.getDrawGraphics();
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 		g.setColor(Color.white);
-		g.setFont(new Font("Arial", 0, 18));
-		//g.drawString("Angle ", 80, 80);
+		g.setFont(new Font("Arial", 0, 24));
+		g.drawString("FPS: "+FPS, 80, 80);
 		g.dispose();
 		bs.show();
 	}
