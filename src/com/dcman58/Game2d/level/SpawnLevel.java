@@ -5,6 +5,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import com.dcman58.Game2d.entity.mob.Dummy;
+
 public class SpawnLevel extends Level {
 
 	public SpawnLevel(String path) {
@@ -23,6 +25,7 @@ public class SpawnLevel extends Level {
 			e.printStackTrace();
 			System.out.println("Exception, could not load level file.  " + e.getMessage());
 		}
+		add(new Dummy(48,48));
 	}
 
 	protected void generateLevel() {

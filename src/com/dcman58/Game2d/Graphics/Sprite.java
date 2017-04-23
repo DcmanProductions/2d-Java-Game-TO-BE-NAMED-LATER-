@@ -8,13 +8,12 @@ public class Sprite {
 
 	private int width, height;
 
-	private SpriteSheet sheet;
+	protected SpriteSheet sheet;
 
 	// Particles
 	public static Sprite particles_normal = new Sprite(3, 0xAAAAAA);
 
-	
-	//Game Tiles
+	// Game Tiles
 	public static Sprite grass = new Sprite(16, 0, 0, SpriteSheet.tiles);
 	public static Sprite flower = new Sprite(16, 2, 0, SpriteSheet.tiles);
 	public static Sprite rock = new Sprite(16, 3, 0, SpriteSheet.tiles);
@@ -30,23 +29,52 @@ public class Sprite {
 	public static Sprite blue_brick = new Sprite(16, 14, 0, SpriteSheet.tiles);
 
 	public static Sprite voidSprite = new Sprite(16, 0x52D4FF);
+	
 	// Player Sprites
-	public static Sprite player_front = new Sprite(32, 1, 1, SpriteSheet.player);
-	public static Sprite player_back = new Sprite(32, 5, 1, SpriteSheet.player);
-	public static Sprite player_side = new Sprite(32, 9, 1, SpriteSheet.player);
 
-	public static Sprite player_forward_1 = new Sprite(32, 0, 1, SpriteSheet.player);
-	public static Sprite player_forward_2 = new Sprite(32, 2, 1, SpriteSheet.player);
+	public static Sprite player_front = new Sprite(32, 0, 0, SpriteSheet.player);
+	public static Sprite player_front_1 = new Sprite(32, 0, 1, SpriteSheet.player);
+	public static Sprite player_front_2 = new Sprite(32, 0, 2, SpriteSheet.player);
 
-	public static Sprite player_side_1 = new Sprite(32, 8, 1, SpriteSheet.player);
-	public static Sprite player_side_2 = new Sprite(32, 10, 1, SpriteSheet.player);
+	public static Sprite player_side = new Sprite(32, 1, 0, SpriteSheet.player);
+	public static Sprite player_side_1 = new Sprite(32, 1, 1, SpriteSheet.player);
+	public static Sprite player_side_2 = new Sprite(32, 1, 2, SpriteSheet.player);
 
-	public static Sprite player_back_1 = new Sprite(32, 4, 1, SpriteSheet.player);
-	public static Sprite player_back_2 = new Sprite(32, 6, 1, SpriteSheet.player);
+	public static Sprite player_back = new Sprite(32, 2, 1, SpriteSheet.player);
+	public static Sprite player_back_1 = new Sprite(32, 2, 0, SpriteSheet.player);
+	public static Sprite player_back_2 = new Sprite(32, 2, 2, SpriteSheet.player);
 
 	// Projectile Sprites
 
 	public static Sprite projetile_wizard = new Sprite(16, 0, 0, SpriteSheet.projectile_wizard);
+
+	public static Sprite dummy_down = new Sprite(32, 0, 0, SpriteSheet.dummy);
+	public static Sprite dummy_up = new Sprite(32, 1, 0, SpriteSheet.dummy);
+	public static Sprite dummy_right = new Sprite(32, 2, 0, SpriteSheet.dummy);
+	public static Sprite dummy_left = new Sprite(32, 3, 0, SpriteSheet.dummy);
+
+	public static Sprite dummy_forward_1 = new Sprite(32, 0, 1, SpriteSheet.dummy);
+	public static Sprite dummy_forward_2 = new Sprite(32, 0, 2, SpriteSheet.dummy);
+	
+	public static Sprite dummy_right_1 = new Sprite(32, 1, 1, SpriteSheet.dummy);
+	public static Sprite dummy_right_2 = new Sprite(32, 1, 2, SpriteSheet.dummy);
+	
+	public static Sprite dummy_left_1 = new Sprite(32, 3, 1, SpriteSheet.dummy);
+	public static Sprite dummy_left_2 = new Sprite(32, 3, 2, SpriteSheet.dummy);
+	
+	public static Sprite dummy_back_1 = new Sprite(32, 2, 1, SpriteSheet.dummy);
+	public static Sprite dummy_back_2 = new Sprite(32, 2, 2, SpriteSheet.dummy);
+
+	protected Sprite(SpriteSheet sheet, int width, int height) {
+		if (width == height)
+			SIZE = width;
+		else
+			SIZE = -1;
+		this.sheet = sheet;
+		this.width = width;
+		this.height = height;
+
+	}
 
 	public Sprite(int size, int x, int y, SpriteSheet sheet) {
 		SIZE = size;
@@ -76,6 +104,16 @@ public class Sprite {
 		setColor(color);
 	}
 
+	public Sprite(int[] pixels, int width, int height) {
+		if (width == height)
+			SIZE = width;
+		else
+			SIZE = -1;
+		this.width = width;
+		this.height = height;
+		this.pixels = pixels;
+	}
+
 	public int getWidth() {
 		return width;
 	}
@@ -91,9 +129,9 @@ public class Sprite {
 	}
 
 	private void load() {
-		for (int y = 0; y < SIZE; y++) {
-			for (int x = 0; x < SIZE; x++) {
-				pixels[x + y * SIZE] = sheet.pixels[(x + this.x) + (y + this.y) * sheet.SIZE];
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				pixels[x + y * width] = sheet.pixels[(x + this.x) + (y + this.y) * sheet.WIDTH];
 
 			}
 		}

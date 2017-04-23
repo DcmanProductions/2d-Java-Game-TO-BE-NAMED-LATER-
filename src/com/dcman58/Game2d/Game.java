@@ -116,8 +116,8 @@ public class Game extends Canvas implements Runnable {
 		level.update();
 		if (key.escape)
 			System.exit(0);
-		device.setFullScreenWindow(frame);
 		if (key.fullscreen) {
+			device.setFullScreenWindow(frame);
 		}
 	}
 

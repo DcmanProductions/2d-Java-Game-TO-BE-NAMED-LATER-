@@ -16,7 +16,7 @@ public class Red_Brick extends Tile {
 	}
 	
 	public boolean solid(){
-		return true;
+		return false;
 	}
 	
 }

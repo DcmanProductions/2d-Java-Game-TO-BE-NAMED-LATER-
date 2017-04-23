@@ -12,13 +12,13 @@ public abstract class Entity {
 	protected Level level;
 	protected Random random = new Random();
 	protected Sprite sprite;
+	protected Screen screen;
+	
 	public void update(){
 		
 	}
 	
-	public void render (Screen scren){
-		
-	}
+	public abstract void render (Screen screen);
 	
 	public void remove(){
 		// Remove from level

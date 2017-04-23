@@ -1,8 +1,10 @@
 package com.dcman58.Game2d.entity.mob;
 
 import com.dcman58.Game2d.Game;
+import com.dcman58.Game2d.Graphics.AnimatedSprites;
 import com.dcman58.Game2d.Graphics.Screen;
 import com.dcman58.Game2d.Graphics.Sprite;
+import com.dcman58.Game2d.Graphics.SpriteSheet;
 import com.dcman58.Game2d.entity.projectile.Projectile;
 import com.dcman58.Game2d.entity.projectile.WizardProjectile;
 import com.dcman58.Game2d.input.Keyboard;
@@ -12,16 +14,24 @@ public class Player extends Mob {
 
 	private Keyboard input;
 	private Sprite sprite;
-	
+
+	int flip = 0;
 	private int fireRate;
 	Projectile p;
 
+	private AnimatedSprites down = new AnimatedSprites(SpriteSheet.player_down, 32, 32, 3);
+	private AnimatedSprites up = new AnimatedSprites(SpriteSheet.player_up, 32, 32, 3);
+	private AnimatedSprites left = new AnimatedSprites(SpriteSheet.player_left, 32, 32, 3);
+	private AnimatedSprites right = new AnimatedSprites(SpriteSheet.player_right, 32, 32, 3);
+
+	private AnimatedSprites animSprite = null;
+
 	private int anim = 0;
-	private boolean walking = false;
 
 	public Player(Keyboard input) {
 		this.input = input;
 		sprite = Sprite.player_front;
+		animSprite = down;
 	}
 
 	public Player(int x, int y, Keyboard input) {
@@ -30,23 +40,37 @@ public class Player extends Mob {
 		this.input = input;
 		sprite = Sprite.player_front;
 		fireRate = WizardProjectile.FIRE_RATE;
+		animSprite = down;
 	}
 
 	public void update() {
-		if(fireRate>0)fireRate--;
+		if (walking)
+			animSprite.update();
+		else
+			animSprite.setFrame(0);
+		if (fireRate > 0)
+			fireRate--;
 		int xa = 0, ya = 0;
 		if (anim < 7500)
 			anim++;
 		else
 			anim = 0;
-		if (input.up)
+		if (input.up) {
 			ya--;
-		if (input.down)
+			animSprite = up;
+		}
+		if (input.down) {
 			ya++;
-		if (input.left)
+			animSprite = down;
+		}
+		if (input.left) {
 			xa--;
-		if (input.right)
+			animSprite = left;
+		}
+		if (input.right) {
 			xa++;
+			animSprite = right;
+		}
 
 		if (xa != 0 || ya != 0) {
 			move(xa, ya);
@@ -54,6 +78,7 @@ public class Player extends Mob {
 		} else {
 			walking = false;
 		}
+		// System.out.println("Sprite Loaded: "+animSprite);
 		clear();
 		updateShooting();
 
@@ -62,7 +87,7 @@ public class Player extends Mob {
 	private void clear() {
 		for (int i = 0; i < level.getProjectiles().size(); i++) {
 			Projectile p = level.getProjectiles().get(i);
-			if(p.isRemoved()){
+			if (p.isRemoved()) {
 				level.getProjectiles().remove(i);
 			}
 		}
@@ -70,7 +95,7 @@ public class Player extends Mob {
 
 	private void updateShooting() {
 
-		if (Mouse.getButton() == 1&&fireRate <=0) {
+		if (Mouse.getButton() == 1 && fireRate <= 0) {
 			double dx = Mouse.getX() - Game.getWindowWidth() / 2;
 			double dy = Mouse.getY() - Game.getWindowHeight() / 2;
 			double dir = Math.atan2(dy, dx);
@@ -80,8 +105,8 @@ public class Player extends Mob {
 	}
 
 	public void render(Screen screen) {
-		int flip = 0;
-		if (dir == 0) {
+
+		if (dir == Direction.UP) {
 			sprite = Sprite.player_back;
 			if (walking) {
 				if (anim % 20 > 10) {
@@ -91,7 +116,7 @@ public class Player extends Mob {
 				}
 			}
 		}
-		if (dir == 1) {
+		if (dir == Direction.RIGHT) {
 			sprite = Sprite.player_side;
 			if (walking) {
 				if (anim % 20 > 10) {
@@ -101,17 +126,17 @@ public class Player extends Mob {
 				}
 			}
 		}
-		if (dir == 2) {
+		if (dir == Direction.DOWN) {
 			sprite = Sprite.player_front;
 			if (walking) {
 				if (anim % 20 > 10) {
-					sprite = Sprite.player_forward_1;
+					sprite = Sprite.player_front_1;
 				} else {
-					sprite = Sprite.player_forward_2;
+					sprite = Sprite.player_front_2;
 				}
 			}
 		}
-		if (dir == 3) {
+		if (dir == Direction.LEFT) {
 			sprite = Sprite.player_side;
 			if (walking) {
 				if (anim % 20 > 10) {
@@ -120,10 +145,11 @@ public class Player extends Mob {
 					sprite = Sprite.player_side_2;
 				}
 			}
-			flip = 1;
 		}
 
-		screen.renderPlayer(x - 16, y - 16, sprite, flip);
+		flip = 1;
+		// sprite = animSprite.getSprite();
+		screen.renderMob(x - 16, y - 16, sprite, flip);
 	}
 
 }
