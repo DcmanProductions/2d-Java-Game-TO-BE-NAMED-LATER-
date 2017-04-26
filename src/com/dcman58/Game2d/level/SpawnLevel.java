@@ -5,9 +5,13 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import com.dcman58.Game2d.entity.mob.Chaser;
 import com.dcman58.Game2d.entity.mob.Dummy;
 
 public class SpawnLevel extends Level {
+	
+	
+	private int mobs = 3;
 
 	public SpawnLevel(String path) {
 		super(path);
@@ -25,7 +29,11 @@ public class SpawnLevel extends Level {
 			e.printStackTrace();
 			System.out.println("Exception, could not load level file.  " + e.getMessage());
 		}
-		add(new Dummy(48,48));
+		for (int i = 0; i < 3; i++) {
+			// Spawns more than one mob
+//			add(new Dummy(24, 83));
+//			add(new Chaser(24, 83));
+		}
 	}
 
 	protected void generateLevel() {

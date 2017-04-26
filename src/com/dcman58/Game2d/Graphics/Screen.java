@@ -2,6 +2,7 @@ package com.dcman58.Game2d.Graphics;
 
 import java.util.Random;
 
+import com.dcman58.Game2d.entity.mob.Mob;
 import com.dcman58.Game2d.entity.projectile.Projectile;
 
 public class Screen {
@@ -107,6 +108,28 @@ public class Screen {
 				int col = sprite.pixels[xs + ys * sprite.SIZE];
 				if (col != 0xffff00ff)
 					pixels[xa + ya * width] = col;
+			}
+		}
+	}
+
+	public void renderMob(int xp, int yp, Mob mob) {
+		xp -= xOffset;
+		yp -= yOffset;
+		for (int y = 0; y < 32; y++) {
+			int ys = y;
+			int ya = y + yp;
+			for (int x = 0; x < 32; x++) {
+				int xs = x;
+				int xa = x + xp;
+				if (xa < -32 || xa >= width || ya < 0 || ya >= height)
+					break;
+				if (xa < 0)
+					xa = 0;
+				int col = mob.getSprite().pixels[xs + ys * 32];
+				if (col != 0xffff00ff)
+					pixels[xa + ya * width] = col;
+				
+				
 			}
 		}
 	}

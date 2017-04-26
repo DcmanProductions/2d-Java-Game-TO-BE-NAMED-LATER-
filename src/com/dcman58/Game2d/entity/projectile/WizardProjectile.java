@@ -6,12 +6,12 @@ import com.dcman58.Game2d.entity.spawner.ParticleSpawner;
 import com.dcman58.Game2d.entity.spawner.Spawner;
 
 public class WizardProjectile extends Projectile {
-	public static final int FIRE_RATE = 15;// Higher is Slower
+	public static final int FIRE_RATE = 25;// Higher is Slower
 
-	public WizardProjectile(int x, int y, double dir) {
+	public WizardProjectile(double x, double y, double dir) {
 		super(x, y, dir);
 		range = random.nextInt(100) + 150;
-		speed = 2;
+		speed = 1;
 		damage = 20;
 
 		sprite = Sprite.projetile_wizard;
@@ -21,7 +21,7 @@ public class WizardProjectile extends Projectile {
 	}
 
 	public void update() {
-		if (level.tileCollision((int)(x+nx), (int)(y+ny), 64,7,2)) {
+		if (level.tileCollision((int) (x + nx), (int) (y + ny), 64, 7, 2)) {
 			level.add(new ParticleSpawner((int) x, (int) y, 44, 50, level));
 			remove();
 		}
@@ -32,7 +32,7 @@ public class WizardProjectile extends Projectile {
 	protected void move() {
 		x += nx;
 		y += ny;
-
+		System.out.println("distance " + distance() + " range " + range);
 		if (distance() > range)
 			remove();
 	}

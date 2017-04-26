@@ -7,7 +7,7 @@ import com.dcman58.Game2d.entity.Entity;
 
 public abstract class Projectile extends Entity {
 
-	protected final int xOrgin, yOrgin;
+	protected final double xOrgin, yOrgin;
 	protected double angle;
 	protected Sprite sprite;
 	protected double nx, ny;
@@ -16,7 +16,7 @@ public abstract class Projectile extends Entity {
 	protected double distace;
 	protected final Random random = new Random();
 
-	public Projectile(int x, int y, double dir) {
+	public Projectile(double x, double y, double dir) {
 
 		xOrgin = x;
 		yOrgin = y;

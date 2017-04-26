@@ -1,10 +1,13 @@
 package com.dcman58.Game2d.entity.mob;
 
+import java.util.List;
+
 import com.dcman58.Game2d.Game;
-import com.dcman58.Game2d.Graphics.AnimatedSprites;
+import com.dcman58.Game2d.Graphics.AnimatedSprite;
 import com.dcman58.Game2d.Graphics.Screen;
 import com.dcman58.Game2d.Graphics.Sprite;
 import com.dcman58.Game2d.Graphics.SpriteSheet;
+import com.dcman58.Game2d.entity.Entity;
 import com.dcman58.Game2d.entity.projectile.Projectile;
 import com.dcman58.Game2d.entity.projectile.WizardProjectile;
 import com.dcman58.Game2d.input.Keyboard;
@@ -19,12 +22,12 @@ public class Player extends Mob {
 	private int fireRate;
 	Projectile p;
 
-	private AnimatedSprites down = new AnimatedSprites(SpriteSheet.player_down, 32, 32, 3);
-	private AnimatedSprites up = new AnimatedSprites(SpriteSheet.player_up, 32, 32, 3);
-	private AnimatedSprites left = new AnimatedSprites(SpriteSheet.player_left, 32, 32, 3);
-	private AnimatedSprites right = new AnimatedSprites(SpriteSheet.player_right, 32, 32, 3);
+	private AnimatedSprite down = new AnimatedSprite(SpriteSheet.player_down, 32, 32, 3);
+	private AnimatedSprite up = new AnimatedSprite(SpriteSheet.player_up, 32, 32, 3);
+	private AnimatedSprite left = new AnimatedSprite(SpriteSheet.player_left, 32, 32, 3);
+	private AnimatedSprite right = new AnimatedSprite(SpriteSheet.player_right, 32, 32, 3);
 
-	private AnimatedSprites animSprite = null;
+	private AnimatedSprite animSprite = null;
 
 	private int anim = 0;
 
@@ -44,44 +47,39 @@ public class Player extends Mob {
 	}
 
 	public void update() {
+
+		List<Entity> es = level.getEntities(this, 70);
+
 		if (walking)
 			animSprite.update();
 		else
 			animSprite.setFrame(0);
 		if (fireRate > 0)
 			fireRate--;
-		int xa = 0, ya = 0;
-		if (anim < 7500)
-			anim++;
-		else
-			anim = 0;
+		double xa = 0, ya = 0;
+		double speed = 1;
 		if (input.up) {
-			ya--;
 			animSprite = up;
-		}
-		if (input.down) {
-			ya++;
+			ya -= speed;
+		} else if (input.down) {
 			animSprite = down;
+			ya += speed;
 		}
 		if (input.left) {
-			xa--;
 			animSprite = left;
-		}
-		if (input.right) {
-			xa++;
+			xa -= speed;
+		} else if (input.right) {
 			animSprite = right;
+			xa += speed;
 		}
-
 		if (xa != 0 || ya != 0) {
 			move(xa, ya);
 			walking = true;
 		} else {
 			walking = false;
 		}
-		// System.out.println("Sprite Loaded: "+animSprite);
 		clear();
 		updateShooting();
-
 	}
 
 	private void clear() {
@@ -89,6 +87,7 @@ public class Player extends Mob {
 			Projectile p = level.getProjectiles().get(i);
 			if (p.isRemoved()) {
 				level.getProjectiles().remove(i);
+				System.out.println("Number of Projectiles "+ level.getProjectiles().size());
 			}
 		}
 	}
@@ -117,12 +116,12 @@ public class Player extends Mob {
 			}
 		}
 		if (dir == Direction.RIGHT) {
-			sprite = Sprite.player_side;
+			sprite = Sprite.player_right;
 			if (walking) {
 				if (anim % 20 > 10) {
-					sprite = Sprite.player_side_1;
+					sprite = Sprite.player_right_1;
 				} else {
-					sprite = Sprite.player_side_2;
+					sprite = Sprite.player_right_2;
 				}
 			}
 		}
@@ -137,19 +136,19 @@ public class Player extends Mob {
 			}
 		}
 		if (dir == Direction.LEFT) {
-			sprite = Sprite.player_side;
+			sprite = Sprite.player_left;
 			if (walking) {
 				if (anim % 20 > 10) {
-					sprite = Sprite.player_side_1;
+					sprite = Sprite.player_left_1;
 				} else {
-					sprite = Sprite.player_side_2;
+					sprite = Sprite.player_left_2;
 				}
 			}
 		}
 
 		flip = 1;
-		// sprite = animSprite.getSprite();
-		screen.renderMob(x - 16, y - 16, sprite, flip);
+		sprite = animSprite.getSprite();
+		screen.renderMob((int) (x - 16), (int) (y - 16), sprite, 0);
 	}
 
 }

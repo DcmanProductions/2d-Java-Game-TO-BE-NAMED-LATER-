@@ -34,8 +34,8 @@ public class Game extends Canvas implements Runnable {
 	private boolean running = false;
 	private Level level;
 	private Player player;
-	
-	public int FPS=0;
+
+	public int FPS = 0;
 
 	private Screen screen;
 
@@ -51,7 +51,7 @@ public class Game extends Canvas implements Runnable {
 		level = level.spawn;
 		TileCoordinate playerSpawn = new TileCoordinate(48, 48);
 		player = new Player(playerSpawn.x(), playerSpawn.y(), key);
-		player.init(level);
+		level.add(player);
 
 		addKeyListener(key);
 
@@ -128,9 +128,9 @@ public class Game extends Canvas implements Runnable {
 			return;
 		}
 		screen.clear();
-		int xScroll = player.x - screen.width / 2, yScroll = player.y - screen.height / 2;
-		level.render(xScroll, yScroll, screen);
-		player.render(screen);
+		double xScroll = player.getX() - screen.width / 2;
+		double yScroll = player.getY() - screen.height / 2;
+		level.render((int)xScroll, (int)yScroll, screen);
 
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];
@@ -140,7 +140,7 @@ public class Game extends Canvas implements Runnable {
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 		g.setColor(Color.white);
 		g.setFont(new Font("Arial", 0, 24));
-		g.drawString("FPS: "+FPS, 80, 80);
+		g.drawString("FPS: " + FPS, 80, 80);
 		g.dispose();
 		bs.show();
 	}

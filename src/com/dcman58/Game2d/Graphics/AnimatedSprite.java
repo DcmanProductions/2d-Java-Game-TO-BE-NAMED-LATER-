@@ -1,6 +1,14 @@
 package com.dcman58.Game2d.Graphics;
 
-public class AnimatedSprites extends Sprite {
+
+
+
+
+
+
+
+
+public class AnimatedSprite extends Sprite{
 	
 	private int frame = 0;
 	private Sprite sprite;
@@ -8,7 +16,7 @@ public class AnimatedSprites extends Sprite {
 	private int time = 0;
 	private int length = -1;
 	
-	public AnimatedSprites(SpriteSheet sheet, int width, int height, int length){
+	public AnimatedSprite(SpriteSheet sheet, int width, int height, int length){
 		super(sheet, width, height);
 		this.length = length;
 		sprite = sheet.getSprites()[0];
@@ -39,5 +47,4 @@ public class AnimatedSprites extends Sprite {
 		}
 		sprite = sheet.getSprites()[index];
 	}
-
 }

@@ -7,28 +7,46 @@ import com.dcman58.Game2d.Graphics.Sprite;
 import com.dcman58.Game2d.level.Level;
 
 public abstract class Entity {
-	public int x,y;
+	protected double x, y;
 	private boolean removed = false;
 	protected Level level;
 	protected Random random = new Random();
 	protected Sprite sprite;
 	protected Screen screen;
-	
-	public void update(){
-		
+
+	public void update() {
+
 	}
-	
-	public abstract void render (Screen screen);
-	
-	public void remove(){
+
+	public void render(Screen screen) {
+//		if (sprite != null)
+//			screen.renderSprite((int) x, (int) y, sprite, true);
+	}
+
+	public void remove() {
 		// Remove from level
 		removed = true;
+
+		System.out.println("Removed = " + isRemoved());
 	}
-	public boolean isRemoved(){
+
+	public boolean isRemoved() {
 		return removed;
 	}
-	
-	public void init(Level level){
+
+	public double getX() {
+		return x;
+	}
+
+	public double getY() {
+		return y;
+	}
+
+	public Sprite getSprite() {
+		return sprite;
+	}
+
+	public void init(Level level) {
 		this.level = level;
 	}
 }
