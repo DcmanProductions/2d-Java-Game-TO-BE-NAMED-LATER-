@@ -27,7 +27,7 @@ public abstract class Entity {
 		// Remove from level
 		removed = true;
 
-		System.out.println("Removed = " + isRemoved());
+//		System.out.println("Removed = " + isRemoved());
 	}
 
 	public boolean isRemoved() {

@@ -50,7 +50,7 @@ public class Sprite {
 
 	// Projectile Sprites
 
-	public static Sprite projetile_wizard = new Sprite(16, 0, 0, SpriteSheet.projectile_wizard);
+	public static Sprite projectile_wizard = new Sprite(16, 0, 0, SpriteSheet.projectile_wizard);
 
 	
 	//Mob Sprites

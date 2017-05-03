@@ -31,8 +31,8 @@ public class SpawnLevel extends Level {
 		}
 		for (int i = 0; i < 3; i++) {
 			// Spawns more than one mob
-//			add(new Dummy(24, 83));
-//			add(new Chaser(24, 83));
+			add(new Dummy(24, 83));
+			add(new Chaser(24, 83));
 		}
 	}
 

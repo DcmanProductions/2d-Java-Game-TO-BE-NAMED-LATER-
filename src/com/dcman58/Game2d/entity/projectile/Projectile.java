@@ -7,7 +7,7 @@ import com.dcman58.Game2d.entity.Entity;
 
 public abstract class Projectile extends Entity {
 
-	protected final double xOrgin, yOrgin;
+	protected final double xOrigin, yOrigin;
 	protected double angle;
 	protected Sprite sprite;
 	protected double nx, ny;
@@ -18,8 +18,8 @@ public abstract class Projectile extends Entity {
 
 	public Projectile(double x, double y, double dir) {
 
-		xOrgin = x;
-		yOrgin = y;
+		xOrigin = x;
+		yOrigin = y;
 		angle = dir;
 		this.x = x;
 		this.y = y;

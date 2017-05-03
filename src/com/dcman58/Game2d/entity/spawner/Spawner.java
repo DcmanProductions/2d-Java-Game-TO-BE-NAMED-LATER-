@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.dcman58.Game2d.Graphics.Screen;
 import com.dcman58.Game2d.entity.Entity;
-import com.dcman58.Game2d.entity.particle.Particle;
 import com.dcman58.Game2d.level.Level;
 
 public class Spawner extends Entity {

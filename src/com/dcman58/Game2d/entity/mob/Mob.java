@@ -32,33 +32,33 @@ public abstract class Mob extends Entity {
 		if (ya > 0) dir = Direction.DOWN;
 		if (ya < 0) dir = Direction.UP;
 		
-//		while (xa != 0) {
-//			if(Math.abs(xa) > 1) {
-//				if (!collision(abs(xa), ya)) {
-//					this.x += abs(xa);
-//				}
-//				xa -= abs(xa);
-//			} else {
-//				if (!collision(abs(xa), ya)) {
-//					this.x += xa;
-//				}	
-//				xa = 0;
-//			}
-//		}
-//		
-//		while (ya != 0) {
-//			if(Math.abs(ya) > 1) {
-//				if (!collision(xa, abs(ya))) {
-//					this.y += abs(ya);
-//				}
-//				ya -= abs(ya);
-//			} else {
-//				if (!collision(xa, abs(ya))) {
-//					this.y += ya;
-//				}	
-//				ya = 0;
-//			}
-//		}
+		while (xa != 0) {
+			if(Math.abs(xa) > 1) {
+				if (!collision(abs(xa), ya)) {
+					this.x += abs(xa);
+				}
+				xa -= abs(xa);
+			} else {
+				if (!collision(abs(xa), ya)) {
+					this.x += xa;
+				}	
+				xa = 0;
+			}
+		}
+		
+		while (ya != 0) {
+			if(Math.abs(ya) > 1) {
+				if (!collision(xa, abs(ya))) {
+					this.y += abs(ya);
+				}
+				ya -= abs(ya);
+			} else {
+				if (!collision(xa, abs(ya))) {
+					this.y += ya;
+				}	
+				ya = 0;
+			}
+		}
 		
 		if (xa != 0 && ya != 0) {
 			move(xa, 0);
