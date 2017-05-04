@@ -5,8 +5,9 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import com.dcman58.Game2d.entity.mob.Chaser;
+import com.dcman58.Game2d.entity.mob.Bandit;
 import com.dcman58.Game2d.entity.mob.Dummy;
+import com.dcman58.Game2d.entity.mob.Guard;
 
 public class SpawnLevel extends Level {
 	
@@ -31,9 +32,10 @@ public class SpawnLevel extends Level {
 		}
 		for (int i = 0; i < 3; i++) {
 			// Spawns more than one mob
-			add(new Dummy(24, 83));
-			add(new Chaser(24, 83));
+			add(new Bandit(24, 83));
 		}
+		add(new Dummy(24, 83));
+		add(new Guard(45, 45));
 	}
 
 	protected void generateLevel() {

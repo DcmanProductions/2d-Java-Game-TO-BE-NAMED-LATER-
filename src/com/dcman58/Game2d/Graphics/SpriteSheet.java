@@ -15,7 +15,7 @@ public class SpriteSheet {
 	public static SpriteSheet tiles = new SpriteSheet("/textures/spritesheet.png", 256);
 	public static SpriteSheet player = new SpriteSheet("/textures/entities/alchimist.png", 129);
 	public static SpriteSheet projectile_wizard = new SpriteSheet("/textures/projectiles/wizardProjectile.png", 48);
-	public static SpriteSheet practice_guard = new SpriteSheet("/textures/entities/practice_guard.png", 128);
+	public static SpriteSheet guard = new SpriteSheet("/textures/entities/practice_guard.png", 128);
 	public static SpriteSheet dummy = new SpriteSheet("/textures/entities/Dummy.png", 128);
 	public static SpriteSheet bandit = new SpriteSheet("/textures/entities/bandit.png", 128);
 
@@ -33,6 +33,11 @@ public class SpriteSheet {
 	public static SpriteSheet bandit_up = new SpriteSheet(bandit, 1, 0, 1, 3, 32);
 	public static SpriteSheet bandit_left = new SpriteSheet(bandit, 3, 0, 1, 3, 32);
 	public static SpriteSheet bandit_right = new SpriteSheet(bandit, 2, 0, 1, 3, 32);
+
+	public static SpriteSheet guard_down = new SpriteSheet(guard, 0, 0, 1, 3, 32);
+	public static SpriteSheet guard_up = new SpriteSheet(guard, 1, 0, 1, 3, 32);
+	public static SpriteSheet guard_left = new SpriteSheet(guard, 3, 0, 1, 3, 32);
+	public static SpriteSheet guard_right = new SpriteSheet(guard, 2, 0, 1, 3, 32);
 
 	private Sprite[] sprites;
 

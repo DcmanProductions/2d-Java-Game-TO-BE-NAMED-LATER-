@@ -7,7 +7,7 @@ import com.dcman58.Game2d.Graphics.Sprite;
 import com.dcman58.Game2d.level.Level;
 
 public abstract class Entity {
-	protected double x, y;
+	protected int x, y;
 	private boolean removed = false;
 	protected Level level;
 	protected Random random = new Random();
@@ -34,11 +34,11 @@ public abstract class Entity {
 		return removed;
 	}
 
-	public double getX() {
+	public int getX() {
 		return x;
 	}
 
-	public double getY() {
+	public int getY() {
 		return y;
 	}
 

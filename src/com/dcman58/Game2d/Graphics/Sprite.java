@@ -95,6 +95,26 @@ public class Sprite {
 	public static Sprite bandit_back_1 = new Sprite(32, 2, 1, SpriteSheet.bandit);
 	public static Sprite bandit_back_2 = new Sprite(32, 2, 2, SpriteSheet.bandit);
 	
+
+	public static Sprite guard = new Sprite(32, 0, 0, SpriteSheet.bandit);
+
+	public static Sprite guard_down = new Sprite(32, 0, 0, SpriteSheet.guard);
+	public static Sprite guard_up = new Sprite(32, 1, 0, SpriteSheet.guard);
+	public static Sprite guard_right = new Sprite(32, 2, 0, SpriteSheet.guard);
+	public static Sprite guard_left = new Sprite(32, 3, 0, SpriteSheet.guard);
+
+	public static Sprite guard_forward_1 = new Sprite(32, 0, 1, SpriteSheet.guard);
+	public static Sprite guard_forward_2 = new Sprite(32, 0, 2, SpriteSheet.guard);
+	
+	public static Sprite guard_right_1 = new Sprite(32, 1, 1, SpriteSheet.guard);
+	public static Sprite guard_right_2 = new Sprite(32, 1, 2, SpriteSheet.guard);
+	
+	public static Sprite guard_left_1 = new Sprite(32, 3, 1, SpriteSheet.guard);
+	public static Sprite guard_left_2 = new Sprite(32, 3, 2, SpriteSheet.guard);
+	
+	public static Sprite guard_back_1 = new Sprite(32, 2, 1, SpriteSheet.guard);
+	public static Sprite guard_back_2 = new Sprite(32, 2, 2, SpriteSheet.guard);
+	
 	
 	
 
