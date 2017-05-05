@@ -32,7 +32,7 @@ public class Bandit extends Mob {
 			animSprite.update();
 		else
 			animSprite.setFrame(0);
-		if (y < 0) {
+		if (ya < 0) {
 			animSprite = up;
 			dir = Direction.UP;
 		} else if (ya > 0) {

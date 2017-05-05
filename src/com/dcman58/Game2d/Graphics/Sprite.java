@@ -50,7 +50,13 @@ public class Sprite {
 
 	// Projectile Sprites
 
-	public static Sprite projectile_wizard = new Sprite(16, 0, 0, SpriteSheet.projectile_wizard);
+	public static Sprite projectile_wizard = new Sprite(16, 0, 0, SpriteSheet.projectiles);
+	public static Sprite projectile_arrow = new Sprite(16, 1, 0, SpriteSheet.projectiles);
+	//potions
+	public static Sprite potion_nourish = new Sprite(16, 0, 0, SpriteSheet.projectiles);
+	public static Sprite potion_unstable = new Sprite(16, 1, 0, SpriteSheet.projectiles);
+	public static Sprite potion_harm = new Sprite(16, 3, 0, SpriteSheet.projectiles);
+	public static Sprite potion_essence = new Sprite(16, 0, 0, SpriteSheet.projectiles);
 
 	
 	//Mob Sprites

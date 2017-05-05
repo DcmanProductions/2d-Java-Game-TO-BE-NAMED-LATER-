@@ -14,7 +14,7 @@ public class SpriteSheet {
 
 	public static SpriteSheet tiles = new SpriteSheet("/textures/spritesheet.png", 256);
 	public static SpriteSheet player = new SpriteSheet("/textures/entities/alchimist.png", 129);
-	public static SpriteSheet projectile_wizard = new SpriteSheet("/textures/projectiles/wizardProjectile.png", 48);
+	public static SpriteSheet projectiles = new SpriteSheet("/textures/projectiles/Projectile.png", 128);
 	public static SpriteSheet guard = new SpriteSheet("/textures/entities/practice_guard.png", 128);
 	public static SpriteSheet dummy = new SpriteSheet("/textures/entities/Dummy.png", 128);
 	public static SpriteSheet bandit = new SpriteSheet("/textures/entities/bandit.png", 128);

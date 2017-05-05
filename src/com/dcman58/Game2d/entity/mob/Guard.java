@@ -37,7 +37,7 @@ public class Guard extends Mob {
 			animSprite.update();
 		else
 			animSprite.setFrame(0);
-		if (y < 0) {
+		if (ya < 0) {
 			animSprite = up;
 			dir = Direction.UP;
 		} else if (ya > 0) {
@@ -61,7 +61,7 @@ public class Guard extends Mob {
 		int py = level.getPlayerAt(0).getY();
 		Vector2i start = new Vector2i(getX() >> 4, getY() >> 4);
 		Vector2i destination = new Vector2i(px >> 4, py >> 4);
-		if (time % 5 == 0)
+		if (time % 2 == 0)
 			path = level.findPath(start, destination);
 		if (path != null) {
 			if (path.size() > 0) {

@@ -8,6 +8,7 @@ import com.dcman58.Game2d.Graphics.Screen;
 import com.dcman58.Game2d.Graphics.Sprite;
 import com.dcman58.Game2d.Graphics.SpriteSheet;
 import com.dcman58.Game2d.entity.Entity;
+import com.dcman58.Game2d.entity.projectile.ArrowProjectile;
 import com.dcman58.Game2d.entity.projectile.Projectile;
 import com.dcman58.Game2d.entity.projectile.WizardProjectile;
 import com.dcman58.Game2d.input.Keyboard;
@@ -101,6 +102,11 @@ public class Player extends Mob {
 			shoot(x, y, dir);
 			fireRate = WizardProjectile.FIRE_RATE;
 		}
+	}
+	
+	protected void shoot(double x, double y, double dir) {
+		Projectile p = new ArrowProjectile(x, y, dir);
+		level.add(p);
 	}
 
 	public void render(Screen screen) {

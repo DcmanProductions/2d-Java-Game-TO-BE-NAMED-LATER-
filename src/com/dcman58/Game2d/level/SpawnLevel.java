@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 import com.dcman58.Game2d.entity.mob.Bandit;
 import com.dcman58.Game2d.entity.mob.Dummy;
 import com.dcman58.Game2d.entity.mob.Guard;
+import com.dcman58.Game2d.entity.mob.Shooter;
 
 public class SpawnLevel extends Level {
 	
@@ -34,8 +35,9 @@ public class SpawnLevel extends Level {
 			// Spawns more than one mob
 			add(new Bandit(24, 83));
 		}
-		add(new Dummy(24, 83));
-		add(new Guard(45, 45));
+//		add(new Dummy(24, 83));
+//		add(new Guard(45, 45));
+		add(new Shooter(47, 53));
 	}
 
 	protected void generateLevel() {
