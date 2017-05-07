@@ -6,6 +6,7 @@ import java.util.List;
 import com.dcman58.Game2d.Graphics.Screen;
 import com.dcman58.Game2d.Graphics.Sprite;
 import com.dcman58.Game2d.entity.Entity;
+import com.dcman58.Game2d.entity.mob.Player;
 
 public class Particle extends Entity {
 
@@ -17,13 +18,13 @@ private Sprite sprite;
 	protected double xx, yy, zz;
 	protected double xa, ya, za;
 	
-	public Particle(int x, int y, int life) {
+	public Particle(int x, int y, int life, Sprite sprite) {
 		this.x = x;
 		this.y = y;
 		this.xx = x;
 		this.yy = y;
 		this.life = life + (random.nextInt(40) - 20);
-		sprite = Sprite.particles_normal;
+		this.sprite = sprite;
 		
 		this.xa = random.nextGaussian();
 		this.ya = random.nextGaussian();

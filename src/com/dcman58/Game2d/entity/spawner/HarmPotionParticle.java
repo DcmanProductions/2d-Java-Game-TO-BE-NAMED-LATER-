@@ -4,16 +4,12 @@ import com.dcman58.Game2d.Graphics.Sprite;
 import com.dcman58.Game2d.entity.particle.Particle;
 import com.dcman58.Game2d.level.Level;
 
-public class ParticleSpawner extends Spawner {
-//	private int life;
+public class HarmPotionParticle extends Spawner{
 
-	public ParticleSpawner(int x, int y, int life, int amount, Level level) {
+	public HarmPotionParticle(int x, int y, int life, int amount, Level level) {
 		super(x, y, Type.PARTICLE, amount, level);
-		//this.life = life;
 		for (int i = 0; i < amount; i++) {
-			level.add(new Particle(x, y, life, Sprite.particles_normal));
+			level.add(new Particle(x, y, life, Sprite.particles_harm));
 		}
-
 	}
-
 }

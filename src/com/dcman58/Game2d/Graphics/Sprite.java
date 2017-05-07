@@ -12,6 +12,10 @@ public class Sprite {
 
 	// Particles
 	public static Sprite particles_normal = new Sprite(3, 0xAAAAAA);
+	public static Sprite particles_nourish = new Sprite(16, 0, 1, SpriteSheet.projectiles);
+	public static Sprite particles_harm = new Sprite(16, 1, 1, SpriteSheet.projectiles);
+	public static Sprite particles_essence = new Sprite(16, 2, 1, SpriteSheet.projectiles);
+	public static Sprite particles_unstable = new Sprite(16, 3, 1, SpriteSheet.projectiles);
 
 	// Game Tiles
 	public static Sprite grass = new Sprite(16, 0, 0, SpriteSheet.tiles);
@@ -52,11 +56,11 @@ public class Sprite {
 
 	public static Sprite projectile_wizard = new Sprite(16, 0, 0, SpriteSheet.projectiles);
 	public static Sprite projectile_arrow = new Sprite(16, 1, 0, SpriteSheet.projectiles);
-	//potions
-	public static Sprite potion_nourish = new Sprite(16, 0, 0, SpriteSheet.projectiles);
-	public static Sprite potion_unstable = new Sprite(16, 1, 0, SpriteSheet.projectiles);
+	//Potions
+	public static Sprite potion_nourish = new Sprite(16, 2, 0, SpriteSheet.projectiles);
 	public static Sprite potion_harm = new Sprite(16, 3, 0, SpriteSheet.projectiles);
-	public static Sprite potion_essence = new Sprite(16, 0, 0, SpriteSheet.projectiles);
+	public static Sprite potion_essence = new Sprite(16, 4, 0, SpriteSheet.projectiles);
+	public static Sprite potion_unstable = new Sprite(16, 5, 0, SpriteSheet.projectiles);
 
 	
 	//Mob Sprites
