@@ -3,6 +3,7 @@ package com.dcman58.Game2d.Graphics;
 import java.util.Random;
 
 import com.dcman58.Game2d.entity.mob.Mob;
+import com.dcman58.Game2d.entity.particle.Particle;
 import com.dcman58.Game2d.entity.projectile.Projectile;
 
 public class Screen {
@@ -46,7 +47,11 @@ public class Screen {
 				int xa = x + xp;
 				if (xa < 0 || xa >= width || ya < 0 || ya >= height)
 					continue;
-				pixels[xa + ya * width] = sprite.pixels[x + y * sprite.getWidth()];
+				int col = sprite.pixels[x + y * sprite.SIZE];
+				if (col != 0xffff00ff)
+					pixels[xa + ya * width] = col;
+				// pixels[xa + ya * width] = sprite.pixels[x + y *
+				// sprite.getWidth()];
 			}
 		}
 
@@ -64,6 +69,9 @@ public class Screen {
 				if (xa < 0)
 					xa = 0;
 				pixels[xa + ya * width] = sprite.pixels[x + y * sprite.SIZE];
+				int col = sprite.pixels[x + y * sprite.SIZE];
+				if (col != 0xffff00ff)
+					pixels[xa + ya * width] = col;
 			}
 		}
 	}
@@ -128,8 +136,7 @@ public class Screen {
 				int col = mob.getSprite().pixels[xs + ys * 32];
 				if (col != 0xffff00ff)
 					pixels[xa + ya * width] = col;
-				
-				
+
 			}
 		}
 	}
@@ -137,6 +144,34 @@ public class Screen {
 	public void setOffset(int xOffset, int yOffset) {
 		this.xOffset = xOffset;
 		this.yOffset = yOffset;
+	}
+
+	public void drawRect(int xp, int yp, int width, int height, int color, boolean fixed) {
+		if (fixed) {
+			xp -= xOffset;
+			yp -= yOffset;
+		}
+		for (int x = xp; x < xp + width; x++) {
+			if (x < 0 || x >= this.width || yp >= this.height)
+				continue;
+			if (yp > 0)
+				pixels[x + yp * this.width] = color;
+			if (yp + height >= this.height)
+				continue;
+			if (yp + height > 0)
+				pixels[x + (yp + height) * this.width] = color;
+
+		}
+		for (int y = yp; y <= yp + height; y++) {
+			if (xp >= this.width || y < 0 || y >= this.height)
+				continue;
+			if (xp > 0)
+				pixels[xp + y * this.width] = color;
+			if (xp + width >= this.width)
+				continue;
+			if (xp + width > 0)
+				pixels[(xp + width) + y * this.width] = color;
+		}
 	}
 
 }

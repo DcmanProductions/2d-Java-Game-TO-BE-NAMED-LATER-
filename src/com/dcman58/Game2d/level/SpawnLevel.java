@@ -31,12 +31,12 @@ public class SpawnLevel extends Level {
 			e.printStackTrace();
 			System.out.println("Exception, could not load level file.  " + e.getMessage());
 		}
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 10; i++) {
 			// Spawns more than one mob
-			add(new Bandit(24, 83));
+			add(new Bandit(52, 85));
 		}
-//		add(new Dummy(24, 83));
-//		add(new Guard(45, 45));
+		add(new Dummy(52, 83));
+		add(new Guard(45, 45));
 		add(new Shooter(47, 53));
 	}
 

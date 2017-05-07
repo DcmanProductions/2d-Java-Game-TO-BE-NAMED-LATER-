@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.dcman58.Game2d.Graphics.Screen;
 import com.dcman58.Game2d.Graphics.Sprite;
+import com.dcman58.Game2d.entity.spawner.ParticleSpawner;
 import com.dcman58.Game2d.level.Level;
 
 public abstract class Entity {
@@ -19,15 +20,11 @@ public abstract class Entity {
 	}
 
 	public void render(Screen screen) {
-//		if (sprite != null)
-//			screen.renderSprite((int) x, (int) y, sprite, true);
 	}
 
 	public void remove() {
 		// Remove from level
 		removed = true;
-
-//		System.out.println("Removed = " + isRemoved());
 	}
 
 	public boolean isRemoved() {

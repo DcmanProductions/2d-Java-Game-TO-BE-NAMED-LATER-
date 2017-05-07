@@ -9,6 +9,7 @@ import com.dcman58.Game2d.Graphics.Sprite;
 import com.dcman58.Game2d.Graphics.SpriteSheet;
 import com.dcman58.Game2d.entity.Entity;
 import com.dcman58.Game2d.entity.projectile.ArrowProjectile;
+import com.dcman58.Game2d.entity.projectile.HarmPotion;
 import com.dcman58.Game2d.entity.projectile.Projectile;
 import com.dcman58.Game2d.entity.projectile.WizardProjectile;
 import com.dcman58.Game2d.input.Keyboard;
@@ -88,7 +89,6 @@ public class Player extends Mob {
 			Projectile p = level.getProjectiles().get(i);
 			if (p.isRemoved()) {
 				level.getProjectiles().remove(i);
-				System.out.println("Number of Projectiles "+ level.getProjectiles().size());
 			}
 		}
 	}
@@ -103,8 +103,13 @@ public class Player extends Mob {
 			fireRate = WizardProjectile.FIRE_RATE;
 		}
 	}
-	
+
 	protected void shoot(double x, double y, double dir) {
+		Projectile p = new HarmPotion(x, y, dir);
+		level.add(p);
+	}
+
+	protected void shootSecondary(double x, double y, double dir) {
 		Projectile p = new ArrowProjectile(x, y, dir);
 		level.add(p);
 	}
