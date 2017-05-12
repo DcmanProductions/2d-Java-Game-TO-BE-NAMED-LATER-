@@ -59,7 +59,7 @@ public class Shooter extends Mob {
 			animSprite = right;
 		}
 		if (xa != 0 || ya != 0) {
-			 move (xa, ya);
+			move(xa, ya);
 			walking = true;
 		} else {
 			walking = false;
@@ -69,7 +69,7 @@ public class Shooter extends Mob {
 
 	private void shootRandom() {
 		if (time % 60 == 0) {
-			List<Entity> entities = level.getEntities(this, 500);
+			List<Entity> entities = level.getEntities(this, 50);
 			entities.add(level.getClientPlayer());
 			if (entities.size() > 0) {
 				int index = random.nextInt(entities.size());
@@ -80,7 +80,8 @@ public class Shooter extends Mob {
 			double dx = rand.getX() - x;
 			double dy = rand.getY() - y;
 			double dir = Math.atan2(dy, dx);
-			shoot(x, y, dir);
+			if (time % 30 == 0)
+				shoot(x, y, dir);
 		}
 	}
 
@@ -103,13 +104,14 @@ public class Shooter extends Mob {
 			double dx = closest.getX() - x;
 			double dy = closest.getY() - y;
 			double dir = Math.atan2(dy, dx);
-			shoot(x, y, dir);
+			if (time % 30 == 0)
+				shoot(x, y, dir);
 		}
 
 	}
 
 	public void render(Screen screen) {
-		 Debug.drawRect(screen, 47*16, 57 *16, 40, 40, 0xff0000, true);
+//		Debug.drawRect(screen, 47 * 16, 57 * 16, 40, 40, 0xff0000, true);
 		sprite = animSprite.getSprite();
 		screen.renderMob(x - 16, y - 16, this);
 	}

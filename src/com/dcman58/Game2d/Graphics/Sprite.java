@@ -33,7 +33,7 @@ public class Sprite {
 	public static Sprite blue_brick = new Sprite(16, 14, 0, SpriteSheet.tiles);
 
 	public static Sprite voidSprite = new Sprite(16, 0x52D4FF);
-	
+
 	// Player Sprites
 
 	public static Sprite player_front = new Sprite(32, 0, 0, SpriteSheet.player);
@@ -43,7 +43,7 @@ public class Sprite {
 	public static Sprite player_left = new Sprite(32, 3, 0, SpriteSheet.player);
 	public static Sprite player_left_1 = new Sprite(32, 3, 1, SpriteSheet.player);
 	public static Sprite player_left_2 = new Sprite(32, 3, 2, SpriteSheet.player);
-	
+
 	public static Sprite player_right = new Sprite(32, 1, 0, SpriteSheet.player);
 	public static Sprite player_right_1 = new Sprite(32, 1, 1, SpriteSheet.player);
 	public static Sprite player_right_2 = new Sprite(32, 1, 2, SpriteSheet.player);
@@ -56,14 +56,13 @@ public class Sprite {
 
 	public static Sprite projectile_wizard = new Sprite(16, 0, 0, SpriteSheet.projectiles);
 	public static Sprite projectile_arrow = new Sprite(16, 1, 0, SpriteSheet.projectiles);
-	//Potions
+	// Potions
 	public static Sprite potion_nourish = new Sprite(16, 2, 0, SpriteSheet.projectiles);
 	public static Sprite potion_harm = new Sprite(16, 3, 0, SpriteSheet.projectiles);
 	public static Sprite potion_essence = new Sprite(16, 4, 0, SpriteSheet.projectiles);
 	public static Sprite potion_unstable = new Sprite(16, 5, 0, SpriteSheet.projectiles);
 
-	
-	//Mob Sprites
+	// Mob Sprites
 	public static Sprite dummy = new Sprite(32, 0, 0, SpriteSheet.dummy);
 
 	public static Sprite dummy_down = new Sprite(32, 0, 0, SpriteSheet.dummy);
@@ -73,18 +72,15 @@ public class Sprite {
 
 	public static Sprite dummy_forward_1 = new Sprite(32, 0, 1, SpriteSheet.dummy);
 	public static Sprite dummy_forward_2 = new Sprite(32, 0, 2, SpriteSheet.dummy);
-	
+
 	public static Sprite dummy_right_1 = new Sprite(32, 1, 1, SpriteSheet.dummy);
 	public static Sprite dummy_right_2 = new Sprite(32, 1, 2, SpriteSheet.dummy);
-	
+
 	public static Sprite dummy_left_1 = new Sprite(32, 3, 1, SpriteSheet.dummy);
 	public static Sprite dummy_left_2 = new Sprite(32, 3, 2, SpriteSheet.dummy);
-	
+
 	public static Sprite dummy_back_1 = new Sprite(32, 2, 1, SpriteSheet.dummy);
 	public static Sprite dummy_back_2 = new Sprite(32, 2, 2, SpriteSheet.dummy);
-	
-	
-	
 
 	public static Sprite bandit = new Sprite(32, 0, 0, SpriteSheet.bandit);
 
@@ -95,16 +91,15 @@ public class Sprite {
 
 	public static Sprite bandit_forward_1 = new Sprite(32, 0, 1, SpriteSheet.bandit);
 	public static Sprite bandit_forward_2 = new Sprite(32, 0, 2, SpriteSheet.bandit);
-	
+
 	public static Sprite bandit_right_1 = new Sprite(32, 1, 1, SpriteSheet.bandit);
 	public static Sprite bandit_right_2 = new Sprite(32, 1, 2, SpriteSheet.bandit);
-	
+
 	public static Sprite bandit_left_1 = new Sprite(32, 3, 1, SpriteSheet.bandit);
 	public static Sprite bandit_left_2 = new Sprite(32, 3, 2, SpriteSheet.bandit);
-	
+
 	public static Sprite bandit_back_1 = new Sprite(32, 2, 1, SpriteSheet.bandit);
 	public static Sprite bandit_back_2 = new Sprite(32, 2, 2, SpriteSheet.bandit);
-	
 
 	public static Sprite guard = new Sprite(32, 0, 0, SpriteSheet.bandit);
 
@@ -115,18 +110,15 @@ public class Sprite {
 
 	public static Sprite guard_forward_1 = new Sprite(32, 0, 1, SpriteSheet.guard);
 	public static Sprite guard_forward_2 = new Sprite(32, 0, 2, SpriteSheet.guard);
-	
+
 	public static Sprite guard_right_1 = new Sprite(32, 1, 1, SpriteSheet.guard);
 	public static Sprite guard_right_2 = new Sprite(32, 1, 2, SpriteSheet.guard);
-	
+
 	public static Sprite guard_left_1 = new Sprite(32, 3, 1, SpriteSheet.guard);
 	public static Sprite guard_left_2 = new Sprite(32, 3, 2, SpriteSheet.guard);
-	
+
 	public static Sprite guard_back_1 = new Sprite(32, 2, 1, SpriteSheet.guard);
 	public static Sprite guard_back_2 = new Sprite(32, 2, 2, SpriteSheet.guard);
-	
-	
-	
 
 	protected Sprite(SpriteSheet sheet, int width, int height) {
 		if (width == height)
@@ -177,6 +169,29 @@ public class Sprite {
 		this.pixels = pixels;
 	}
 
+	public static Sprite[] split(SpriteSheet sheet) {
+
+		int amount = (sheet.getWidth() * sheet.getHeight()) / (sheet.SPRITE_WIDTH * sheet.SPRITE_HEIGHT);
+		Sprite[] sprites = new Sprite[amount];
+		int current = 0;
+		int[] pixels = new int[sheet.SPRITE_WIDTH * sheet.SPRITE_HEIGHT];
+		for (int yp = 0; yp < sheet.getHeight() / sheet.SPRITE_HEIGHT; yp++) {
+			for (int xp = 0; xp < sheet.getWidth() / sheet.SPRITE_WIDTH; xp++) {
+
+				for (int y = 0; y < sheet.SPRITE_HEIGHT; y++) {
+					for (int x = 0; x < sheet.SPRITE_WIDTH; x++) {
+						int xo = x + xp * sheet.SPRITE_WIDTH;
+						int yo = y + yp * sheet.SPRITE_HEIGHT;
+						pixels[x + y * sheet.SPRITE_WIDTH] = sheet.getPixels()[xo + yo * sheet.getWidth()];
+					}
+				}
+
+				sprites[current++] = new Sprite(pixels, sheet.SPRITE_WIDTH, sheet.SPRITE_HEIGHT);
+			}
+		}
+		return sprites;
+	}
+
 	public int getWidth() {
 		return width;
 	}
@@ -194,7 +209,7 @@ public class Sprite {
 	private void load() {
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				pixels[x + y * width] = sheet.pixels[(x + this.x) + (y + this.y) * sheet.WIDTH];
+				pixels[x + y * width] = sheet.pixels[(x + this.x) + (y + this.y) * sheet.SPRITE_WIDTH];
 
 			}
 		}

@@ -33,11 +33,11 @@ public class SpawnLevel extends Level {
 		}
 		for (int i = 0; i < 10; i++) {
 			// Spawns more than one mob
-			add(new Bandit(52, 85));
+//			add(new Bandit(52, 85));
 		}
-		add(new Dummy(52, 83));
-		add(new Guard(45, 45));
-		add(new Shooter(47, 53));
+//		add(new Dummy(52, 83));
+//		add(new Guard(45, 45));
+//		add(new Shooter(47, 53));
 	}
 
 	protected void generateLevel() {

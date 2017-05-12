@@ -21,7 +21,7 @@ public class HarmPotion extends Projectile {
 
 	public void update() {
 		if (level.tileCollision((int) (x + nx), (int) (y + ny), 7, 5, 4)) {
-			level.add(new ParticleSpawner((int) x, (int) y, 44, 50, level));
+			level.add(new HarmPotionParticle((int) x, (int) y, 44, 50, level));
 			remove();
 		}
 		move();

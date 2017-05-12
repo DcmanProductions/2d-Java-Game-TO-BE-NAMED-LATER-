@@ -1,9 +1,7 @@
 package com.dcman58.Game2d;
 
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
@@ -13,6 +11,7 @@ import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
+import com.dcman58.Game2d.Graphics.Font;
 import com.dcman58.Game2d.Graphics.Screen;
 import com.dcman58.Game2d.entity.mob.Player;
 import com.dcman58.Game2d.input.Keyboard;
@@ -34,9 +33,8 @@ public class Game extends Canvas implements Runnable {
 	private boolean running = false;
 	private Level level;
 	private Player player;
-
+	 private Font font;
 	public int FPS = 0;
-
 	private Screen screen;
 
 	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -52,6 +50,8 @@ public class Game extends Canvas implements Runnable {
 		TileCoordinate playerSpawn = new TileCoordinate(48, 48);
 		player = new Player(playerSpawn.x(), playerSpawn.y(), key);
 		level.add(player);
+		
+		font = new Font();
 
 		addKeyListener(key);
 
@@ -130,7 +130,9 @@ public class Game extends Canvas implements Runnable {
 		screen.clear();
 		double xScroll = player.getX() - screen.width / 2;
 		double yScroll = player.getY() - screen.height / 2;
-		level.render((int)xScroll, (int)yScroll, screen);
+		level.render((int) xScroll, (int) yScroll, screen);
+
+		font.render("Hello",screen);
 
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];
@@ -138,9 +140,8 @@ public class Game extends Canvas implements Runnable {
 
 		Graphics g = bs.getDrawGraphics();
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-		g.setColor(Color.white);
-		g.setFont(new Font("Arial", 0, 24));
-		g.drawString("FPS: " + FPS, 80, 80);
+
+		
 		g.dispose();
 		bs.show();
 	}
